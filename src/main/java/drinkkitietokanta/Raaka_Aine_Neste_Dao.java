@@ -19,7 +19,7 @@ public class Raaka_Aine_Neste_Dao {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public List<Raaka_aine_neste> findAll() throws SQLException {
+    public List<Raaka_aine_neste> findAll() throws SQLException, Exception {
         List<Raaka_aine_neste> nesteet = new ArrayList<>();
 
         try (Connection conn = database.getConnection();
@@ -33,7 +33,7 @@ public class Raaka_Aine_Neste_Dao {
         return nesteet;
     }
 
-    public Raaka_aine_neste saveOrUpdate(Raaka_aine_neste object) throws SQLException {
+    public Raaka_aine_neste saveOrUpdate(Raaka_aine_neste object) throws SQLException, Exception {
         // simply support saving -- disallow saving if task with
         // same name exists
         Raaka_aine_neste byName = findByName(object.getNimi());
@@ -55,7 +55,7 @@ public class Raaka_Aine_Neste_Dao {
         return findByName(object.getNimi());
     }
 
-    private Raaka_aine_neste findByName(String name) throws SQLException {
+    private Raaka_aine_neste findByName(String name) throws SQLException, Exception {
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM RAAKA_AINE_NESTE WHERE nimi = ?");
             stmt.setString(1, name);

@@ -15,7 +15,7 @@ public class Raaka_Aine_Kiintea_Dao {
         this.database = database;
     }
 
-    public Raaka_aine_kiintea findOne(Integer key) throws SQLException {
+    public Raaka_aine_kiintea findOne(Integer key) throws SQLException, Exception {
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM RAAKA_AINE_KIINTEA WHERE Raaka_aine_kiintea_id = ?");
             stmt.setInt(1, key);
@@ -33,7 +33,7 @@ public class Raaka_Aine_Kiintea_Dao {
         }
     }
 
-    public List<Raaka_aine_kiintea> findAll() throws SQLException {
+    public List<Raaka_aine_kiintea> findAll() throws SQLException, Exception {
         List<Raaka_aine_kiintea> kiinteat = new ArrayList<>();
         try (Connection conn = database.getConnection();
                 ResultSet result = conn.prepareStatement("SELECT * FROM Raaka_aine_kiintea").executeQuery()) {
@@ -46,7 +46,7 @@ public class Raaka_Aine_Kiintea_Dao {
         return kiinteat;
     }
 
-    public Raaka_aine_kiintea saveOrUpdate(Raaka_aine_kiintea object) throws SQLException {
+    public Raaka_aine_kiintea saveOrUpdate(Raaka_aine_kiintea object) throws SQLException, Exception {
         // simply support saving -- disallow saving if task with
         // same name exists
         Raaka_aine_kiintea byName = findByName(object.getNimi());
@@ -67,7 +67,7 @@ public class Raaka_Aine_Kiintea_Dao {
         return findByName(object.getNimi());
     }
 
-    private Raaka_aine_kiintea findByName(String name) throws SQLException {
+    private Raaka_aine_kiintea findByName(String name) throws SQLException, Exception {
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM RAAKA_AINE_KIINTEA WHERE nimi = ?");
             stmt.setString(1, name);
