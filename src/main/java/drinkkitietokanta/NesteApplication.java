@@ -17,14 +17,11 @@ public class NesteApplication {
             Spark.port(Integer.valueOf(System.getenv("PORT")));
         }
 
+        
         Spark.get("/nesteet", (req, res) -> {
             HashMap map = new HashMap<>();
-            //List<Raaka_aine_neste> lista = nesteet.findAll();
             map.put("nesteet", nesteet.findAll());
-            /*for (Raaka_aine_neste r : lista) {
-                map.put("nesteet", r.toString());
-            }*/
-
+            map.put("kiinteat", kiinteat.findAll());
             return new ModelAndView(map, "nesteet");
         }, new ThymeleafTemplateEngine());
 
@@ -62,7 +59,7 @@ public class NesteApplication {
 
             kiinteat.saveOrUpdate(kiintea);
 
-            res.redirect("/kiinteat");
+            res.redirect("/nesteet");
             return "";
 
         });
