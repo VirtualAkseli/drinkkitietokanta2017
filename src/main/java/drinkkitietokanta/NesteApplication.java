@@ -12,6 +12,11 @@ public class NesteApplication {
         Database database = new Database("jdbc:sqlite:drinkkitietokanta.db");
         Raaka_Aine_Neste_Dao nesteet = new Raaka_Aine_Neste_Dao(database);
         DrinkkiDao drinkit = new DrinkkiDao(database);
+
+        if (System.getenv("PORT") != null) {
+            Spark.port(Integer.valueOf(System.getenv("PORT")));
+        }
+
         Spark.get("/nesteet", (req, res) -> {
             HashMap map = new HashMap<>();
             //List<Raaka_aine_neste> lista = nesteet.findAll();
