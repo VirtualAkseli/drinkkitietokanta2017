@@ -17,15 +17,14 @@
 
         <h2> Lisää uusi neste</h2>
 
-        <form method="POST" action="/nesteet" >
+        <form method="POST" action="/nesteet">
+            <input type="text" name="nimi"/><br/>
+            <input type="text" name="maara"/><br/>
+            <input type="text" name="hinta"/><br/>
+            <input type="text" name="alkoholipitoisuus"/><br/>
 
-<input list="nesteet" name="neste">
-<datalist th:each="drinkki : ${drinkit}">
-  <option value= th:text="${drinkki.nimi}">
-  
-</datalist>
-<input type="submit">
-</form>
+            <input type="submit" value="Add!"/>
+        </form>
 
         <h1>Kiinteät</h1>
 

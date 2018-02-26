@@ -1,0 +1,70 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Drinkit</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1>Drinkit</h1>
+
+        <ul>
+            <li th:each="drinkki : ${drinkit}">
+                <span th:text="${drinkki.nimi}">Task</span>
+            </li>
+        </ul>
+
+        <h2>Uusi Drinkki</h2>
+
+        <form method="POST" action="/uusidrinkki">
+            <p>Nimi</p>
+            <input type="text" name="nimi"/><br/>
+            <p>Lasityyppi</p>
+            <input type="text" name="lasityyppi"/><br/>
+            <p>Resepti</p>
+            <input type="text" name="resepti"/><br/>
+            <input type="submit" value="Lisää!"/>
+        </form>
+
+        <br/>
+
+        <h2>Lisää drinkille raaka-aineita</h2>
+
+        <h3> Neste </h3>
+
+        <form method="POST" action="/uusidrinkki2">
+            <p>Drinkki</p>
+            <select>
+                <?php foreach($drinkki as $drinkki): ?>
+                <option value="<?= $drinkki['drinkki_id']; ?>"><?= $drinkki['nimi']; ?></option>
+                <?php endforeach; ?>
+            </select>
+            <p>Raaka-aine</p>
+            <select name="raaka-aine"/>
+            </select>
+            </br>
+            <p>Määrä</p>
+            <input type="text" name="maara"/><br/>
+            <input type="submit" value="Lisää!"/>
+        </form>
+        <br/><br/>
+        <h3> Kiinteä </h3>
+
+        <form method="POST" action="/uusidrinkki3">
+            <p>Drinkki</p>
+            <select name="drinkki"/><br/>
+            </select>
+            <p>Raaka-aine</p>
+            <select name="raaka-aine"/>
+            </select>
+            </br>
+            <p>Määrä</p>
+            <input type="text" name="maara"/><br/>
+            <input type="submit" value="Lisää!"/>
+        </form>
+        <br/><br/>
+        <a href="drinkit">Takaisin</a>
+
+    </body>
+</html>
