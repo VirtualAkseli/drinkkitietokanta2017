@@ -12,7 +12,7 @@ public class NesteApplication {
         Database database = new Database("jdbc:sqlite:drinkkitietokanta.db");
         Raaka_Aine_Neste_Dao nesteet = new Raaka_Aine_Neste_Dao(database);
         DrinkkiDao drinkit = new DrinkkiDao(database);
-
+        Raaka_Aine_Kiintea_Dao kiinteat = new Raaka_Aine_Kiintea_Dao(database);
         if (System.getenv("PORT") != null) {
             Spark.port(Integer.valueOf(System.getenv("PORT")));
         }
@@ -53,6 +53,25 @@ public class NesteApplication {
 
             res.redirect("/drinkit");
             return "";
+        });
+        
+        Spark.get("/kiinteat", (req, res) -> {
+            HashMap map = new HashMap<>();
+            
+            map.put("kiinteat", nesteet.findAll());
+            
+
+            return new ModelAndView(map, "kiinteat");
+        }, new ThymeleafTemplateEngine());
+
+        Spark.post("/kiinteat", (req, res) -> {
+            Raaka_aine_kiintea kiintea = new Raaka_aine_kiintea(-1, req.queryParams("nimi"), Integer.parseInt(req.queryParams("paino")), Double.parseDouble(req.queryParams("hinta")));
+
+            kiinteat.saveOrUpdate(kiintea);
+
+            res.redirect("/kiinteat");
+            return "";
+
         });
     }
 }
