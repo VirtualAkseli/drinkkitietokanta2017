@@ -20,8 +20,8 @@
         <form method="POST" action="/nesteet" >
 
 <input list="nesteet" name="neste">
-<datalist th:each="drinkki : ${drinkit}">
-  <option value= th:text="${drinkki.nimi}">
+<datalist th:each="neste : ${nesteet}">
+  <option value= th:text="${neste.nimi}">
   
 </datalist>
 <input type="submit">
