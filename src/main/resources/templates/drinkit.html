@@ -21,30 +21,52 @@
 	 
 	 <h2> Lisää uusi drinkki </h2>
 	 <form method="POST" action="/drinkit">
-            <input type="text" name="nimi"/><br/>
-            <input type="text" name="lasityyppi"/><br/>
-            <input type="text" name="resepti"/><br/>
+             <p>Drinkin nimi</p>
+             <input type="text" name="nimi"/>
+             <br/>
+             <p>Vaadittu lasityyppi</p>
+            <input type="text" name="lasityyppi"/>
+            <br/>
+            <p>Valmistusohje</p>
+            <textarea rows="2" cols="25" placeholder="Valmistusohje drinkille"></textarea>
+            <br/>
             
             
-            <input type="submit" value="Add!"/>
+            <input type="submit" value="Lisää!"/>
         </form>
          
          
         
 	<br/>
-         <h2> Lisää uuden drinkin raaka-aineet </h2>
+         <h2> Lisää uuden drinkin raaka-aineet </h2> 
+         <p>Valitse, mihin drinkkiin ainesosa lisätään</p>
         <form method="POST" action="/drinkit">
+            <select name="nimi">
+                        <option th:each="drinkki: ${drinkit}" th:value="${drinkki.nimi}" th:text="${drinkki.nimi}">
+                            drinkki
+                        </option>
+                    </select>
+            <p>Valitse lisättävä neste</p>
+            <br/>
             <select name="nimi">
                         <option th:each="neste: ${nesteet}" th:value="${neste.nimi}" th:text="${neste.nimi}">
                             neste
                         </option>
                     </select>
-            <input type="submit" value="Add!"/>
+            
+            <br/>
+            <p>Määrä (cl)</p>
+            
+            <input type="text" name="maara"/>
+            <br/>
+            <input type="submit" value="Lisää!"/>
         </form>
+         <br/>
 
         
         
         <a href="nesteet">Lisää tai tarkastele raaka-aineita</a>
+        <br/>
         <a href="index">Takaisin</a>
     </body>
 </html>

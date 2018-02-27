@@ -1,11 +1,15 @@
 package drinkkitietokanta;
 
+import java.util.List;
+
 
 public class Drinkki {
     private int drinkki_id;
     private String nimi;
     private String lasityyppi;
     private String resepti;
+    private Double hinta;
+    private Double alkoholiprosentti;
 
     public Drinkki(int drinkki_id, String nimi, String lasityyppi, String resepti) {
         this.drinkki_id = drinkki_id;
@@ -13,9 +17,35 @@ public class Drinkki {
         this.lasityyppi = lasityyppi;
         this.resepti = resepti;
     }
+    
+    public void laske(DrinkkiRaaka_Aine_Neste_Dao dao) throws Exception{
+        List<Raaka_aine_neste> lista = dao.listaaDrinkinAineet(drinkki_id);
+        double alkoholi = 0;
+        double yhteensa = 0;
+        double summa = 0;
+        
+        for(Raaka_aine_neste raakaAine:lista){
+            yhteensa += raakaAine.getMaara();
+            alkoholi += raakaAine.getAlkoholipitoisuus()*raakaAine.getMaara();
+            double suhde = raakaAine.getJuomaanLisattavaMaara() / raakaAine.getMaara();
+            double price = suhde * raakaAine.getHinta();
+            summa += price;
+        }
+        
+        alkoholiprosentti = alkoholi / yhteensa;
+        hinta = summa;
+    }
 
     public int getDrinkki_id() {
         return drinkki_id;
+    }
+
+    public Double getAlkoholiprosentti() {
+        return alkoholiprosentti;
+    }
+
+    public Double getHinta() {
+        return hinta;
     }
 
     public String getLasityyppi() {
@@ -29,5 +59,6 @@ public class Drinkki {
     public String getResepti() {
         return resepti;
     }
+    
     
 }

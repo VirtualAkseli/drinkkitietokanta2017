@@ -13,6 +13,8 @@ public class NesteApplication {
         Raaka_Aine_Neste_Dao nesteet = new Raaka_Aine_Neste_Dao(database);
         DrinkkiDao drinkit = new DrinkkiDao(database);
         Raaka_Aine_Kiintea_Dao kiinteat = new Raaka_Aine_Kiintea_Dao(database);
+        DrinkkiRaaka_Aine_Neste_Dao liitokset = new DrinkkiRaaka_Aine_Neste_Dao(database);
+        
         if (System.getenv("PORT") != null) {
             Spark.port(Integer.valueOf(System.getenv("PORT")));
         }
@@ -39,7 +41,7 @@ public class NesteApplication {
             HashMap map = new HashMap<>();
             map.put("nesteet", nesteet.findAll());
             map.put("drinkit", drinkit.findAll());
-
+            map.put("liitokset", liitokset.);
             return new ModelAndView(map, "drinkit");
         }, new ThymeleafTemplateEngine());
 
@@ -54,7 +56,7 @@ public class NesteApplication {
         
        Spark.get("/index", (req, res) -> {
             HashMap map = new HashMap<>();
-
+            
             map.put("index", drinkit.findAll());
             map.put("drinkit", drinkit.findAll());
             
