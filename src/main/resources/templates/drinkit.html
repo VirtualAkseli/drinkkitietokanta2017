@@ -40,7 +40,7 @@
 	<br/>
          <h2> Lisää uuden drinkin raaka-aineet </h2> 
          <p>Valitse, mihin drinkkiin ainesosa lisätään</p>
-        <form method="POST" action="/uusiraakaaine">
+        <form method="POST" th:action="@{~/uusiraakaaine/{did}(did=${drinkki.drinkki_id})/{nid}(nid=${neste.raaka_aine_neste_id})}">
             <select name="nimi">
                         <option th:each="drinkki: ${drinkit}" th:value="${drinkki.drinkki_id}" th:text="${drinkki.nimi}">
                             drinkki
