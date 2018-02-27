@@ -41,7 +41,7 @@ public class DrinkkiRaaka_Aine_Neste_Dao {
     }
 
     public void saveOrUpdate(Integer drinkkiId, Integer raakaaineid, Integer maara) throws SQLException, Exception {
-        poistaVanha(drinkkiId, raakaaineid);
+        //poistaVanha(drinkkiId, raakaaineid);
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO DrinkkiRaaka_aine_neste (Drinkki_id, Raaka_aine_neste_id, maara) VALUES (?, ?, ?)");
             stmt.setInt(1, drinkkiId);
