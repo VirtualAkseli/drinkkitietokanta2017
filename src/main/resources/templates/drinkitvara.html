@@ -39,17 +39,22 @@
         
 	<br/>
          <h2> Lisää uuden drinkin raaka-aineet </h2> 
-         <p>Kirjoita, mihin drinkkiin ainesosa lisätään</p>
-        <form method="POST" th:action="/uusiraakaaine">
-            <ul>
-            <input type="text" name="nimi"/>
-            <br/>
-        </ul>
+         <p>Valitse, mihin drinkkiin ainesosa lisätään</p>
 
-            <p>Kirjoita lisättävä neste</p>
+	<li th:each="neste : ${nesteet}">
+        <form method="POST" th:action="@{~/uusiraakaaine/{did}(did=${drinkit.drinkki_id})/{nid}(nid=${nesteet.raaka_aine_neste_id})}">
+            <select name="nimi">
+                        <option th:each="drinkki: ${drinkit}" th:value="${drinkki.drinkki_id}" th:text="${drinkki.nimi}">
+                            drinkki
+                        </option>
+                    </select>
+            <p>Valitse lisättävä neste</p>
             <br/>
-            <input type="text" name="neste"/>
-            <br/>
+            <select name="nimi">
+                        <option th:each="neste: ${nesteet}" th:value="${neste.raaka_aine_neste_id}" th:text="${neste.nimi}">
+                            neste
+                        </option>
+                    </select>
             
             <br/>
             <p>Määrä (cl)</p>
