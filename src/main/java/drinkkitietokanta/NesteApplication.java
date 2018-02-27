@@ -56,7 +56,7 @@ public class NesteApplication {
             HashMap map = new HashMap<>();
 
             map.put("index", drinkit.findAll());
-            map.put("drinkit", nesteet.findAll());
+            map.put("drinkit", drinkit.findAll());
             
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
