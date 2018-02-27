@@ -22,14 +22,14 @@ public class NesteApplication {
         
         Spark.get("/nesteet", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("nesteet", nesteet.findAll());
+            map.put("nesteet", nesteet.findAll(liitokset));
             map.put("kiinteat", kiinteat.findAll());
             return new ModelAndView(map, "nesteet");
         }, new ThymeleafTemplateEngine());
 
         Spark.post("/nesteet", (req, res) -> {
             Raaka_aine_neste neste = new Raaka_aine_neste(-1, req.queryParams("nimi"), Integer.parseInt(req.queryParams("maara")), Double.parseDouble(req.queryParams("hinta")), Double.parseDouble(req.queryParams("alkoholipitoisuus")));
-
+            
             nesteet.saveOrUpdate(neste);
             
             res.redirect("/nesteet");
@@ -39,7 +39,7 @@ public class NesteApplication {
 
         Spark.get("/drinkit", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("nesteet", nesteet.findAll());
+            map.put("nesteet", nesteet.findAll(liitokset));
             map.put("drinkit", drinkit.findAll());
             
             return new ModelAndView(map, "drinkit");

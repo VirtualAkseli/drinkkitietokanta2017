@@ -8,6 +8,7 @@ public class Raaka_aine_neste {
     private double alkoholipitoisuus;
     
     private int juomaanLisattavaMaara;
+    private int kayttokerrat;
     
     public Raaka_aine_neste(int a, String b, int c, double d, double e){
         raaka_aine_neste_id = a;
@@ -17,6 +18,14 @@ public class Raaka_aine_neste {
         alkoholipitoisuus = e;
     }
 
+    public void setKayttokerrat(int kayttokerrat) {
+        this.kayttokerrat = kayttokerrat;
+    }
+
+    public int getKayttokerrat() {
+        return kayttokerrat;
+    }
+    
     public void setJuomaanLisattavaMaara(int juomaanLisattavaMaara) {
         this.juomaanLisattavaMaara = juomaanLisattavaMaara;
     }

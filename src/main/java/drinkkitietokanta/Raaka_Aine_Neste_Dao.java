@@ -19,14 +19,16 @@ public class Raaka_Aine_Neste_Dao {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public List<Raaka_aine_neste> findAll() throws SQLException, Exception {
+    public List<Raaka_aine_neste> findAll(DrinkkiRaaka_Aine_Neste_Dao dao) throws SQLException, Exception {
         List<Raaka_aine_neste> nesteet = new ArrayList<>();
 
         try (Connection conn = database.getConnection();
                 ResultSet result = conn.prepareStatement("SELECT * FROM Raaka_aine_neste").executeQuery()) {
 
             while (result.next()) {
-                nesteet.add(new Raaka_aine_neste(result.getInt("Raaka_aine_neste_id"), result.getString("Nimi"), result.getInt("Maara"), result.getDouble("Hinta"), result.getDouble("Alkoholipitoisuus")));
+                Raaka_aine_neste ran = new Raaka_aine_neste(result.getInt("Raaka_aine_neste_id"), result.getString("Nimi"), result.getInt("Maara"), result.getDouble("Hinta"), result.getDouble("Alkoholipitoisuus"));
+                ran.setKayttokerrat(dao.laskeKayttokerrat(ran.getId()));
+                nesteet.add(ran);
             }
         }
 
