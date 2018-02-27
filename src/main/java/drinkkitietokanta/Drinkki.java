@@ -16,6 +16,8 @@ public class Drinkki {
         this.nimi = nimi;
         this.lasityyppi = lasityyppi;
         this.resepti = resepti;
+        hinta = 0d;
+        alkoholiprosentti = 0d;
     }
     
     public void laske(DrinkkiRaaka_Aine_Neste_Dao dao) throws Exception{
@@ -27,8 +29,8 @@ public class Drinkki {
         for(Raaka_aine_neste raakaAine:lista){
             yhteensa += raakaAine.getMaara();
             alkoholi += raakaAine.getAlkoholipitoisuus()*raakaAine.getMaara();
-            double suhde = raakaAine.getJuomaanLisattavaMaara() / raakaAine.getMaara();
-            double price = suhde * raakaAine.getHinta();
+            
+            double price = raakaAine.getJuomaanLisattavaMaara() * raakaAine.getHinta();
             summa += price;
         }
         
