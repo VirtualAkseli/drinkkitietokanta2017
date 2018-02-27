@@ -7,25 +7,45 @@
     </head>
 
     <body>
-        <h1>Tasks</h1>
+        <h1>Nesteet</h1>
 
-        <select name="nimi">
-                        <option th:each="kiintea: ${kiinteat}" th:value="${kiintea.nimi}" th:text="${kiintea.nimi}">
-                            kiintea
-                        </option>
-                    </select>
+        <ul>
+            <li th:each="neste : ${nesteet}">
+                <span th:text="${neste.nimi}">Task</span>
+            </li>
+        </ul>
 
-	<select name="nimi">
-                        <option th:each="neste: ${nesteet}" th:value="${neste.nimi}" th:text="${neste.nimi}">
-                            neste
-                        </option>
-                    </select>
-
-        <h2>Add new task</h2>
+        <h2> Lisää uusi neste</h2>
 
         <form method="POST" action="/nesteet">
             <input type="text" name="nimi"/><br/>
+            <input type="text" name="maara"/><br/>
+            <input type="text" name="hinta"/><br/>
+            <input type="text" name="alkoholipitoisuus"/><br/>
+
             <input type="submit" value="Add!"/>
         </form>
+
+        <h1>Kiinteät</h1>
+
+        <ul>
+            <li th:each="kiintea : ${kiinteat}">
+                <span th:text="${kiintea.nimi}">Task</span>
+            </li>
+        </ul>
+
+        <h2> Lisää uusi kiinteä</h2>
+
+        <form method="POST" action="/kiinteat">
+            <input type="text" name="nimi"/><br/>
+            <input type="text" name="paino"/><br/>
+            <input type="text" name="hinta"/><br/>
+
+            <input type="submit" value="Add!"/>
+        </form>
+        <br/>
+
+        <a href="drinkit">Takaisin</a>
+
     </body>
 </html>

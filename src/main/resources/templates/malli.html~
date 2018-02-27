@@ -1,0 +1,31 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Nesteet</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1>Tasks</h1>
+
+        <select name="nimi">
+                        <option th:each="kiintea: ${kiinteat}" th:value="${kiintea.nimi}" th:text="${kiintea.nimi}">
+                            kiintea
+                        </option>
+                    </select>
+
+	<select name="nimi">
+                        <option th:each="neste: ${nesteet}" th:value="${neste.nimi}" th:text="${neste.nimi}">
+                            neste
+                        </option>
+                    </select>
+
+        <h2>Add new task</h2>
+
+        <form method="POST" action="/nesteet">
+            <input type="text" name="nimi"/><br/>
+            <input type="submit" value="Add!"/>
+        </form>
+    </body>
+</html>

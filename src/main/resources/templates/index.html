@@ -1,0 +1,27 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Drinkit</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1>Drinkit</h1>
+
+        <ul>
+            <li th:each="drinkki : ${drinkit}">
+                <span th:text="${drinkki.nimi}">Task</span>
+            </li>
+        </ul>
+	
+	<br/>
+
+        <a href="drinkit">Lisää uusi drinkki</a>
+
+	<br/>
+        
+        <a href="nesteet">Lisää tai tarkastele raaka-aineita</a>
+        
+    </body>
+</html>

@@ -29,7 +29,7 @@ public class NesteApplication {
             Raaka_aine_neste neste = new Raaka_aine_neste(-1, req.queryParams("nimi"), Integer.parseInt(req.queryParams("maara")), Double.parseDouble(req.queryParams("hinta")), Double.parseDouble(req.queryParams("alkoholipitoisuus")));
 
             nesteet.saveOrUpdate(neste);
-
+            
             res.redirect("/nesteet");
             return "";
 
@@ -49,6 +49,15 @@ public class NesteApplication {
             drinkit.saveOrUpdate(drinkki);
 
             res.redirect("/drinkit");
+            return "";
+        });
+        
+        Spark.post("/index", (req, res) -> {
+            Drinkki drinkki = new Drinkki(-1, req.queryParams("nimi"), req.queryParams("lasityyppi"), req.queryParams("resepti"));
+
+            drinkit.saveOrUpdate(drinkki);
+
+            res.redirect("/index");
             return "";
         });
         
