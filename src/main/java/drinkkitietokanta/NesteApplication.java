@@ -37,7 +37,7 @@ public class NesteApplication {
 
         Spark.get("/drinkit", (req, res) -> {
             HashMap map = new HashMap<>();
-
+            map.put("nesteet", nesteet.findAll());
             map.put("drinkit", drinkit.findAll());
 
             return new ModelAndView(map, "drinkit");
