@@ -66,7 +66,7 @@ public class DrinkkiDao {
         return findByName(object.getNimi());
     }
 
-    private Drinkki findByName(String name) throws SQLException, Exception {
+    public Drinkki findByName(String name) throws SQLException, Exception {
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Drinkki WHERE nimi = ?");
             stmt.setString(1, name);

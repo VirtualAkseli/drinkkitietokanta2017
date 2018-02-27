@@ -55,7 +55,7 @@ public class Raaka_Aine_Neste_Dao {
         return findByName(object.getNimi());
     }
 
-    private Raaka_aine_neste findByName(String name) throws SQLException, Exception {
+    public Raaka_aine_neste findByName(String name) throws SQLException, Exception {
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM RAAKA_AINE_NESTE WHERE nimi = ?");
             stmt.setString(1, name);

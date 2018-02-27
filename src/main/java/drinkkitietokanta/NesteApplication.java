@@ -57,7 +57,14 @@ public class NesteApplication {
         Spark.post("/uusiraakaaine", (req, res) -> {
             
 
-            liitokset.saveOrUpdate(Integer.parseInt(req.queryParams("drinkki.drinkki_id")), Integer.parseInt(req.queryParams("neste.raaka_aine_neste_id")), Integer.parseInt(req.queryParams("sisalto")));
+            /*liitokset.saveOrUpdate(
+                    Integer.parseInt(req.queryParams("drinkki.drinkki_id")), 
+                    Integer.parseInt(req.queryParams("neste.raaka_aine_neste_id")), 
+                    Integer.parseInt(req.queryParams("sisalto")));*/
+            liitokset.saveOrUpdate(
+                    drinkit.findByName(req.queryParams("drinkki.nimi")).drinkki_id, 
+                    nesteet.findByName(req.queryParams("neste.nimi")).getId(), 
+                    Integer.parseInt(req.queryParams("sisalto")));
             //liitokset.saveOrUpdate(req.queryParams("drinkki.drinkki_id"), req.queryParams("neste.raaka_aine_neste_id"), Integer.parseInt(req.queryParams("sisalto")));
             res.redirect("/drinkit");
             return "";
