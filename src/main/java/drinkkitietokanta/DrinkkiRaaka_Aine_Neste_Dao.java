@@ -30,13 +30,12 @@ public class DrinkkiRaaka_Aine_Neste_Dao {
             
             while(rs.next()) {
                 Raaka_aine_neste ran = new Raaka_aine_neste(
-                        //rs.getInt("Raaka_aine_neste.Raaka_aine_neste_id"), 
-                        1,
-                        rs.getString("Raaka_aine_neste.nimi"), 
-                        rs.getInt("Raaka_aine_neste.maara"), 
-                        rs.getDouble("Raaka_aine_neste.hinta"), 
-                        rs.getDouble("Raaka_aine_neste.alkoholipitoisuus"));
-                ran.setJuomaanLisattavaMaara(rs.getInt("DrinkkiRaaka_aine_neste.maara"));
+                        rs.getInt("Raaka_aine_neste_id"), 
+                        rs.getString("nimi"), 
+                        rs.getInt("maara"), 
+                        rs.getDouble("hinta"), 
+                        rs.getDouble("alkoholipitoisuus"));
+                ran.setJuomaanLisattavaMaara(rs.getInt("maara"));
                 lista.add(ran);
             }
         }
