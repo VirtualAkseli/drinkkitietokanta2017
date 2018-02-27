@@ -60,7 +60,7 @@ public class NesteApplication {
             liitokset.saveOrUpdate(
                     drinkit.findByName(req.queryParams("nimi")).getDrinkki_id(), 
                     nesteet.findByName(req.queryParams("neste")).raaka_aine_neste_id, 
-                    Integer.parseInt(req.queryParams("sisalto")));
+                    Integer.parseInt(req.queryParams("maara")));
             //liitokset.saveOrUpdate(req.queryParams("drinkki.drinkki_id"), req.queryParams("neste.raaka_aine_neste_id"), Integer.parseInt(req.queryParams("sisalto")));
             res.redirect("/drinkit");
             return "";
