@@ -64,6 +64,7 @@ public class DrinkkiRaaka_Aine_Neste_Dao {
             PreparedStatement s = conn.prepareStatement("SELECT COUNT(*) FROM DrinkkiRaaka_aine_neste WHERE raaka_aine_neste_id = ?");
             s.setInt(1, raakaaineId);
             ResultSet rs = s.executeQuery();
+            rs.next();
             return rs.getInt("count");
         }
     }
