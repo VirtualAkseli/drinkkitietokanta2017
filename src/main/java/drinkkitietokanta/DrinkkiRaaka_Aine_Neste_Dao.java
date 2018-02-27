@@ -55,7 +55,7 @@ public class DrinkkiRaaka_Aine_Neste_Dao {
     
     public void poistaVanha(Integer drinkkiId, Integer raakaaineid) throws SQLException, Exception {
         try (Connection conn = database.getConnection()) {
-            PreparedStatement s = conn.prepareStatement("DELETE FROM DrinkkiRaaka_Aine_Neste WHERE Drinkki_id = ? AND Raaka_aine_neste_id = ?;");
+            PreparedStatement s = conn.prepareStatement("DELETE FROM DrinkkiRaaka_Aine_Neste WHERE Drinkki_id = ? AND Raaka_aine_neste_id = ?");
             s.setInt(1, drinkkiId);
             s.setInt(2, raakaaineid);
         }
