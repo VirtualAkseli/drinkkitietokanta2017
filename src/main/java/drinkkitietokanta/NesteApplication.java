@@ -41,14 +41,23 @@ public class NesteApplication {
             HashMap map = new HashMap<>();
             map.put("nesteet", nesteet.findAll());
             map.put("drinkit", drinkit.findAll());
-            map.put("liitokset", liitokset.);
+            
             return new ModelAndView(map, "drinkit");
         }, new ThymeleafTemplateEngine());
 
-        Spark.post("/drinkit", (req, res) -> {
+        Spark.post("/uusidrinkki", (req, res) -> {
             Drinkki drinkki = new Drinkki(-1, req.queryParams("nimi"), req.queryParams("lasityyppi"), req.queryParams("resepti"));
 
             drinkit.saveOrUpdate(drinkki);
+
+            res.redirect("/drinkit");
+            return "";
+        });
+        
+        Spark.post("/uusiraakaaine", (req, res) -> {
+            
+
+            liitokset.saveOrUpdate(Integer.parseInt(req.queryParams("drinkki.drinkki_id")), Integer.parseInt(req.queryParams("neste.neste_id")), Integer.parseInt(req.queryParams("sisalto")));
 
             res.redirect("/drinkit");
             return "";
