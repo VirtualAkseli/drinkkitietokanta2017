@@ -11,9 +11,7 @@
 
         <ul>
             <li th:each="drinkki : ${drinkit}">
-                <a th:href="@{~/drinkit/{id}(id=${drinkki.drinkki_id})}">
-                    <span th:text="${drinkki.nimi}">Artist name</span>
-                </a>
+                <span th:text="${drinkki.nimi}">Task</span>
             </li>
         </ul>
 	
