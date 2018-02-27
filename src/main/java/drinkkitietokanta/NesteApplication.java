@@ -1,7 +1,6 @@
 package drinkkitietokanta;
 
 import java.util.HashMap;
-import java.util.List;
 import spark.ModelAndView;
 import spark.Spark;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
@@ -14,12 +13,11 @@ public class NesteApplication {
         DrinkkiDao drinkit = new DrinkkiDao(database);
         Raaka_Aine_Kiintea_Dao kiinteat = new Raaka_Aine_Kiintea_Dao(database);
         DrinkkiRaaka_Aine_Neste_Dao liitokset = new DrinkkiRaaka_Aine_Neste_Dao(database);
-        
+
         if (System.getenv("PORT") != null) {
             Spark.port(Integer.valueOf(System.getenv("PORT")));
         }
 
-        
         Spark.get("/nesteet", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("nesteet", nesteet.findAll(liitokset));
@@ -29,9 +27,30 @@ public class NesteApplication {
 
         Spark.post("/nesteet", (req, res) -> {
             Raaka_aine_neste neste = new Raaka_aine_neste(-1, req.queryParams("nimi"), Integer.parseInt(req.queryParams("maara")), Double.parseDouble(req.queryParams("hinta")), Double.parseDouble(req.queryParams("alkoholipitoisuus")));
-            
+
             nesteet.saveOrUpdate(neste);
+
+            res.redirect("/nesteet");
+            return "";
+
+        });
+
+        Spark.get("/nesteet/:id", (req, res) -> {
+            HashMap map = new HashMap<>();
+            Integer userId = Integer.parseInt(req.params(":id"));
+            map.put("drinkki", drinkit.findOne(userId));
             
+
+            return new ModelAndView(map, "drinkki");
+        }, new ThymeleafTemplateEngine());
+
+        
+
+        Spark.post("/nesteet", (req, res) -> {
+            Raaka_aine_neste neste = new Raaka_aine_neste(-1, req.queryParams("nimi"), Integer.parseInt(req.queryParams("maara")), Double.parseDouble(req.queryParams("hinta")), Double.parseDouble(req.queryParams("alkoholipitoisuus")));
+
+            nesteet.saveOrUpdate(neste);
+
             res.redirect("/nesteet");
             return "";
 
@@ -41,7 +60,7 @@ public class NesteApplication {
             HashMap map = new HashMap<>();
             map.put("nesteet", nesteet.findAll(liitokset));
             map.put("drinkit", drinkit.findAll());
-            
+
             return new ModelAndView(map, "drinkit");
         }, new ThymeleafTemplateEngine());
 
@@ -53,28 +72,27 @@ public class NesteApplication {
             res.redirect("/drinkit");
             return "";
         });
-        
+
         Spark.post("/uusiraakaaine", (req, res) -> {
-            
 
             liitokset.saveOrUpdate(
-                    drinkit.findByName(req.queryParams("nimi")).getDrinkki_id(), 
-                    nesteet.findByName(req.queryParams("neste")).raaka_aine_neste_id, 
+                    drinkit.findByName(req.queryParams("nimi")).getDrinkki_id(),
+                    nesteet.findByName(req.queryParams("neste")).raaka_aine_neste_id,
                     Integer.parseInt(req.queryParams("maara")));
             //liitokset.saveOrUpdate(req.queryParams("drinkki.drinkki_id"), req.queryParams("neste.raaka_aine_neste_id"), Integer.parseInt(req.queryParams("sisalto")));
             res.redirect("/drinkit");
             return "";
         });
-        
-       Spark.get("/index", (req, res) -> {
+
+        Spark.get("/index", (req, res) -> {
             HashMap map = new HashMap<>();
-            
+
             map.put("index", drinkit.findAll());
             map.put("drinkit", drinkit.findAll());
-            
+
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
-        
+
         Spark.post("/index", (req, res) -> {
             Drinkki drinkki = new Drinkki(-1, req.queryParams("nimi"), req.queryParams("lasityyppi"), req.queryParams("resepti"));
 
