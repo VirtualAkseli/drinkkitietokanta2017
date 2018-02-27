@@ -30,7 +30,7 @@ public class Drinkki {
             yhteensa += raakaAine.getMaara();
             alkoholi += raakaAine.getAlkoholipitoisuus()*raakaAine.getMaara();
             
-            double price = raakaAine.getJuomaanLisattavaMaara() * raakaAine.getHinta();
+            double price = raakaAine.getJuomaanLisattavaMaara() * (raakaAine.getHinta()/100);
             summa += price;
         }
         
