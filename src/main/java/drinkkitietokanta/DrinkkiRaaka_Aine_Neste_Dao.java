@@ -22,10 +22,12 @@ public class DrinkkiRaaka_Aine_Neste_Dao {
     public List<Raaka_aine_neste> listaaDrinkinAineet (Integer drinkkiId) throws SQLException, Exception {
         List<Raaka_aine_neste> lista = new ArrayList<>();
         try (Connection conn = database.getConnection()) {
-            PreparedStatement s = conn.prepareStatement("SELECT * FROM DrinkkiRaaka_aine_neste, Raaka_aine_neste WHERE DrinkkiRaaka_aine_neste.Drinkki_id = ? AND Raaka_aine_neste.raaka_aine_neste_id = Drinkkiraaka_aine_neste.raaka_aine_neste_id;");
+            PreparedStatement s = conn.prepareStatement("SELECT * FROM DrinkkiRaaka_aine_neste, Raaka_aine_neste WHERE DrinkkiRaaka_aine_neste.Drinkki_id = ? AND Raaka_aine_neste.raaka_aine_neste_id = Drinkkiraaka_aine_neste.raaka_aine_neste_id");
             s.setInt(1, drinkkiId);
             
             ResultSet rs = s.executeQuery();
+            
+            
             while(rs.next()) {
                 Raaka_aine_neste ran = new Raaka_aine_neste(
                         rs.getInt("DrinkkiRaaka_aine_neste.Raaka_aine_neste_id"), 
