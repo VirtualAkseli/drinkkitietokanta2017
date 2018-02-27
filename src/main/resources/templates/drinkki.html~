@@ -31,12 +31,12 @@
 		<br/>
 		<span th:text="${drinkki.hinta}">Task</span>
 		<br/> 
-		<span th:text="${drinkki.alkoholipitoisuus}">Task</span>
+		<span th:text="${drinkki.alkoholiprosentti}">Task</span>
 		
 		
 		
             </li>
         </ul>
-
+		<a href="index">Takaisin</a>
     </body>
 </html>

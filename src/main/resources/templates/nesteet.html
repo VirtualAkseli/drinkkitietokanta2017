@@ -27,24 +27,9 @@
             <input type="submit" value="Add!"/>
         </form>
 
-        <h1>Kiinteät</h1>
+        
 
-        <ul>
-            <li th:each="kiintea : ${kiinteat}">
-                <span th:text="${kiintea.nimi}">Task</span>
-            </li>
-        </ul>
-
-        <h2> Lisää uusi kiinteä</h2>
-
-        <form method="POST" action="/kiinteat">
-            <input type="text" name="nimi"/><br/>
-            <input type="text" name="paino"/><br/>
-            <input type="text" name="hinta"/><br/>
-
-            <input type="submit" value="Add!"/>
-        </form>
-        <br/>
+        
 
         <a href="drinkit">Takaisin</a>
 

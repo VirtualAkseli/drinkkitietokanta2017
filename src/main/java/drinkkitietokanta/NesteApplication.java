@@ -11,7 +11,7 @@ public class NesteApplication {
         Database database = new Database("jdbc:sqlite:drinkkitietokanta.db");
         Raaka_Aine_Neste_Dao nesteet = new Raaka_Aine_Neste_Dao(database);
         DrinkkiDao drinkit = new DrinkkiDao(database);
-        Raaka_Aine_Kiintea_Dao kiinteat = new Raaka_Aine_Kiintea_Dao(database);
+        
         DrinkkiRaaka_Aine_Neste_Dao liitokset = new DrinkkiRaaka_Aine_Neste_Dao(database);
 
         if (System.getenv("PORT") != null) {
@@ -21,7 +21,7 @@ public class NesteApplication {
         Spark.get("/nesteet", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("nesteet", nesteet.findAll(liitokset));
-            map.put("kiinteat", kiinteat.findAll());
+            
             return new ModelAndView(map, "nesteet");
         }, new ThymeleafTemplateEngine());
 
@@ -105,14 +105,6 @@ public class NesteApplication {
             return "";
         });
 
-        Spark.post("/kiinteat", (req, res) -> {
-            Raaka_aine_kiintea kiintea = new Raaka_aine_kiintea(-1, req.queryParams("nimi"), Integer.parseInt(req.queryParams("paino")), Double.parseDouble(req.queryParams("hinta")));
-
-            kiinteat.saveOrUpdate(kiintea);
-
-            res.redirect("/nesteet");
-            return "";
-
-        });
+        
     }
 }

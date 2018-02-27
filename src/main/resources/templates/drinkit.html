@@ -39,12 +39,20 @@
         
 	<br/>
          <h2> Lisää uuden drinkin raaka-aineet </h2> 
+         
+         <ul>
+            <li th:each="neste : ${nesteet}">
+                <span th:text="${neste.nimi}">Task</span>
+                <span th:text="${neste.kayttokerrat}">Task</span>
+            </li>
+        </ul>
+         <br/>
          <p>Kirjoita, mihin drinkkiin ainesosa lisätään</p>
         <form method="POST" action="/uusiraakaaine">
-            <ul>
+            
             <input type="text" name="nimi"/>
             <br/>
-        </ul>
+        
 
             <p>Kirjoita lisättävä neste</p>
             <br/>
