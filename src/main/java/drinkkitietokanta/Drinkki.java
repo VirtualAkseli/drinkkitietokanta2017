@@ -4,7 +4,7 @@ import java.util.List;
 
 
 public class Drinkki {
-    private int drinkki_id;
+    public int drinkki_id;
     private String nimi;
     private String lasityyppi;
     private String resepti;

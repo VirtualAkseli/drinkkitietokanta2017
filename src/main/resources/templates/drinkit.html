@@ -42,14 +42,14 @@
          <p>Valitse, mihin drinkkiin ainesosa lisätään</p>
         <form method="POST" action="/uusiraakaaine">
             <select name="nimi">
-                        <option th:each="drinkki: ${drinkit}" th:value="${drinkki.getDrinkki_id()}" th:text="${drinkki.nimi}">
+                        <option th:each="drinkki: ${drinkit}" th:value="${drinkki.drinkki_id}" th:text="${drinkki.nimi}">
                             drinkki
                         </option>
                     </select>
             <p>Valitse lisättävä neste</p>
             <br/>
             <select name="nimi">
-                        <option th:each="neste: ${nesteet}" th:value="${neste.getId()}" th:text="${neste.nimi}">
+                        <option th:each="neste: ${nesteet}" th:value="${neste.raaka_aine_neste_id}" th:text="${neste.nimi}">
                             neste
                         </option>
                     </select>

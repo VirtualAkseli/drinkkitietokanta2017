@@ -1,7 +1,7 @@
 package drinkkitietokanta;
 
 public class Raaka_aine_neste {
-    private int raaka_aine_neste_id;
+    public int raaka_aine_neste_id;
     private String nimi;
     private int maara;
     private double hinta;
