@@ -35,10 +35,12 @@ public class NesteApplication {
 
         });
 
-        Spark.get("/nesteet/:id", (req, res) -> {
+        Spark.get("/drinkit/:id", (req, res) -> {
             HashMap map = new HashMap<>();
-            Integer userId = Integer.parseInt(req.params(":id"));
-            map.put("drinkki", drinkit.findOne(userId));
+            Drinkki drinkki = drinkit.findOne(Integer.parseInt(req.params("id")));
+            drinkki.laske(liitokset);
+            map.put("drinkki", drinkki);
+            map.put("raakaaineet", liitokset.listaaDrinkinAineet(drinkki.drinkki_id));
             
 
             return new ModelAndView(map, "drinkki");
@@ -46,15 +48,7 @@ public class NesteApplication {
 
         
 
-        Spark.post("/nesteet", (req, res) -> {
-            Raaka_aine_neste neste = new Raaka_aine_neste(-1, req.queryParams("nimi"), Integer.parseInt(req.queryParams("maara")), Double.parseDouble(req.queryParams("hinta")), Double.parseDouble(req.queryParams("alkoholipitoisuus")));
-
-            nesteet.saveOrUpdate(neste);
-
-            res.redirect("/nesteet");
-            return "";
-
-        });
+       
 
         Spark.get("/drinkit", (req, res) -> {
             HashMap map = new HashMap<>();
