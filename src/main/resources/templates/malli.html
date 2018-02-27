@@ -9,11 +9,7 @@
     <body>
         <h1>Tasks</h1>
 
-        <select name="nimi">
-                        <option th:each="kiintea: ${kiinteat}" th:value="${kiintea.nimi}" th:text="${kiintea.nimi}">
-                            kiintea
-                        </option>
-                    </select>
+        
 
 	<select name="nimi">
                         <option th:each="neste: ${nesteet}" th:value="${neste.nimi}" th:text="${neste.nimi}">
@@ -29,3 +25,5 @@
         </form>
     </body>
 </html>
+
+<input type="submit" name="submit" value="submit" />

@@ -13,7 +13,7 @@
             <li th:each="drinkki : ${drinkit}">
                 <span th:text="${drinkki.nimi}">Task</span>
                  <br/>
-                <span th:text="${drinkki.resepti}">Task</span>
+               
             </li>
         </ul>
         
@@ -28,12 +28,23 @@
             
             <input type="submit" value="Add!"/>
         </form>
+         
+         
         
 	<br/>
+         <h2> Lisää uuden drinkin raaka-aineet </h2>
+        <form method="POST" action="/drinkit">
+            <select name="nimi">
+                        <option th:each="neste: ${nesteet}" th:value="${neste.nimi}" th:text="${neste.nimi}">
+                            neste
+                        </option>
+                    </select>
+            <input type="submit" value="Add!"/>
+        </form>
 
         
         
         <a href="nesteet">Lisää tai tarkastele raaka-aineita</a>
-        
+        <a href="index">Takaisin</a>
     </body>
 </html>
