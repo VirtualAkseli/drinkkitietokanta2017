@@ -6,37 +6,34 @@
         <meta charset="utf-8" />
     </head>
 
-    <body>
+    <body bgcolor="e6ffe6" style='font-family:"Courier"'>
         <h1 th:text="${drinkki.nimi}">Drinkin nimi</h1>
 	
         <h2>Käytetyt raaka-aineet</h2>
-  	
+  	<p>Drinkin nimi / Juomaan lisättävä määrä (cl)</p>
 
-	<ul>
+	<ul style="border:3px; border-style:solid; border-color:#000000; padding: 1em; background-color: #ffccff">
             <li th:each="aine : ${raakaaineet}">
-                <span th:text="${aine.nimi}">Task</span>
-		<span th:text="${aine.juomaanLisattavaMaara}">Task</span>
-		
-		
+                <span th:text="${aine.nimi}"></span> 
+                <br/>
+		<span th:text="${aine.juomaanLisattavaMaara}"></span>
             </li>
         </ul>
 	
 	<h2>Muut tiedot</h2>
+        <p>Lasityyppi / Resepti / Hinta(€) / Alkoholiprosentti(%)</p>
 	
-	<ul>
+	<ul style="border:3px; border-style:solid; border-color:#000000; padding: 1em; background-color: #ffccff">
             <li th:each="drinkki : ${drinkki}">
-                <span th:text="${drinkki.lasityyppi}">Task</span>
+                <span th:text="${drinkki.lasityyppi}"></span>
 		<br/>
-		<span th:text="${drinkki.resepti}">Task</span>
+		<span th:text="${drinkki.resepti}"></span>
 		<br/>
-		<span th:text="${drinkki.hinta}">Task</span>
+		<span th:text="${drinkki.hinta}"></span>
 		<br/> 
-		<span th:text="${drinkki.alkoholiprosentti}">Task</span>
-		
-		
-		
+		<span th:text="${drinkki.alkoholiprosentti}"></span>
             </li>
         </ul>
-		<a href="https://drinkkitietokanta2017.herokuapp.com/index">Takaisin</a>
+		<a href="https://drinkkitietokanta2017.herokuapp.com/index" style="font-size: 40px">Takaisin</a>
     </body>
 </html>

@@ -6,24 +6,25 @@
         <meta charset="utf-8" />
     </head>
 
-    <body>
+    <body bgcolor="#dafffa" style='font-family:"Courier"'>
         <h1>Drinkit</h1>
-
-        <ul>
+        <p>Klikkaa drinkin nimeä tarkastellaksesi drinkin tietoja.</p>
+        <ul style="border:3px; border-style:solid; border-color:#000000; padding: 1em; background-color: #ffeb99">
             <li th:each="drinkki : ${drinkit}">
                 <a th:href="@{~/drinkit/{id}(id=${drinkki.drinkki_id})}">
-                    <span th:text="${drinkki.nimi}">Artist name</span>
+                    <span th:text="${drinkki.nimi}"></span>
                 </a>
             </li>
         </ul>
+        
 	
 	<br/>
 
-        <a href="drinkit">Lisää uusi drinkki</a>
+        <a href="drinkit" style="font-size: 40px">Lisää uusi drinkki</a>
 
 	<br/>
         
-        <a href="nesteet">Lisää tai tarkastele raaka-aineita</a>
+        <a href="nesteet" style="font-size: 40px">Lisää tai tarkastele raaka-aineita</a>
         
     </body>
 </html>

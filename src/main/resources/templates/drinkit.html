@@ -6,13 +6,13 @@
         <meta charset="utf-8" />
     </head>
 
-    <body>
+    <body bgcolor="ffcccc" style='font-family:"Courier"'>
         <h1>Drinkit</h1>
-
-        <ul>
+        
+        <ul style="border:3px; border-style:solid; border-color:#000000; padding: 1em; background-color: #ccffdd">
             <li th:each="drinkki : ${drinkit}">
                 <a th:href="@{~/drinkit/{id}(id=${drinkki.drinkki_id})}">
-                    <span th:text="${drinkki.nimi}">Artist name</span>
+                    <span th:text="${drinkki.nimi}"></span>
                 </a>
             </li>
         </ul>
@@ -20,7 +20,7 @@
 	 <br/>
 	 
 	 <h2> Lisää uusi drinkki </h2>
-	 <form method="POST" action="/uusidrinkki">
+	 <form method="POST" action="/uusidrinkki" style="border:3px; border-style:solid; border-color:#000000; padding: 1em; background-color: #ccffdd">
              <p>Drinkin nimi</p>
              <input type="text" name="nimi"/>
              <br/>
@@ -40,27 +40,30 @@
 	<br/>
          <h2> Lisää uuden drinkin raaka-aineet </h2> 
          
-         <ul>
+         <p> Valittavat raaka-aineet </p>
+         
+         <ul style="border:3px; border-style:solid; border-color:#000000; padding: 1em; background-color: #ccffdd">
             <li th:each="neste : ${nesteet}">
-                <span th:text="${neste.nimi}">Task</span>
-                <span th:text="${neste.kayttokerrat}">Task</span>
+                <span th:text="${neste.nimi}"></span>
+                <span th:text="${neste.kayttokerrat}"></span>
             </li>
         </ul>
-         <br/>
-         <p>Kirjoita, mihin drinkkiin ainesosa lisätään</p>
-        <form method="POST" action="/uusiraakaaine">
-            
+        <br/>
+        <p> Raaka-aineen lisäys drinkkiin </p> 
+         
+        <form method="POST" action="/uusiraakaaine" style="border:3px; border-style:solid; border-color:#000000; padding: 1em; background-color: #ccffdd">
+            <p>Kirjoita, mihin drinkkiin ainesosa lisätään</p>
             <input type="text" name="nimi"/>
             <br/>
         
-
-            <p>Kirjoita lisättävä neste</p>
             <br/>
+            <p>Kirjoita lisättävä neste</p>
+            
             <input type="text" name="neste"/>
             <br/>
             
             <br/>
-            <p>Määrä (cl)</p>
+            <p>Määrä (paljonko raaka-ainetta lisätään drinkkiin) (cl)</p>
             
             <input type="text" name="maara"/>
             <br/>
@@ -70,8 +73,8 @@
 
         
         
-        <a href="nesteet">Lisää tai tarkastele raaka-aineita</a>
+         <a href="nesteet" style="font-size: 40px">Lisää tai tarkastele raaka-aineita</a>
         <br/>
-        <a href="index">Takaisin</a>
+        <a href="index" style="font-size: 40px">Takaisin</a>
     </body>
 </html>
